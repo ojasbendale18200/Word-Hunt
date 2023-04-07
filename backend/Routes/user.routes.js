@@ -3,10 +3,10 @@ const useRouter = express.Router();
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-const cors = require("cors");
+
 const { UserModel } = require("../Models/user.model");
 require("dotenv").config();
-app.use(cors());
+
 
 
 useRouter.post("/register", (req, res) => {
