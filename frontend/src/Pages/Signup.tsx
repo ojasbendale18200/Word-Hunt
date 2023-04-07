@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import { register } from "../utils/types";
 import axios, { AxiosResponse } from "axios";
 
+import { useNavigate } from "react-router-dom";
+
+
 const Signup = () => {
   const initData = {
     name: "",
@@ -11,6 +14,8 @@ const Signup = () => {
   };
   const [userData, setUserData] = useState<register>(initData);
 
+  const navigate = useNavigate();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUserData({ ...userData, [name]: value });
@@ -18,6 +23,7 @@ const Signup = () => {
 
   const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
     try {
       let res: AxiosResponse = await axios.post(
         `http://localhost:4321/users/register`,
@@ -28,6 +34,30 @@ const Signup = () => {
       // }
     } catch (error) {
       console.log(error);
+
+
+    if (
+      userData.name === "" ||
+      userData.email === "" ||
+      userData.password === ""
+    ) {
+      alert("please fill the Details");
+    } else {
+      try {
+        let res: AxiosResponse = await axios.post(
+          `http://localhost:4321/users/register`,
+          userData
+        );
+        console.log(res);
+        if (res.status === 200) {
+          navigate("/login");
+        } else {
+          alert("please fill the Details");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+
     }
   };
   return (
@@ -69,7 +99,7 @@ const Signup = () => {
                 className="w-full bg-green-600 text-center py-3 rounded text-white hover:bg-green-700 focus:outline-none my-1"
                 onClick={handleClick}
               >
-                Create Account
+                Let's Go
               </button>
 
               <div className="text-center text-sm text-gray-500 mt-4">
