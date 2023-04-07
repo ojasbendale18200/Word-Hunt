@@ -1,9 +1,34 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
-import React from "react";
+import React, { useState } from "react";
+import { register } from "../utils/types";
+import axios, { AxiosResponse } from "axios";
 
 const Signup = () => {
-  const handleClick = () => {
-    console.log("hello");
+  const initData = {
+    name: "",
+    email: "",
+    password: "",
+  };
+  const [userData, setUserData] = useState<register>(initData);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
+
+  const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    try {
+      let res: AxiosResponse = await axios.post(
+        `http://localhost:4321/users/register`,
+        userData
+      );
+      console.log(res);
+      // if (res.status === 200) {
+      // }
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <div>
@@ -15,9 +40,10 @@ const Signup = () => {
               <input
                 type="text"
                 className="block border border-gray-300 w-full p-3 rounded mb-4"
-                name="username"
+                name="name"
                 placeholder="Username"
                 required
+                onChange={handleChange}
               />
 
               <input
@@ -26,6 +52,7 @@ const Signup = () => {
                 name="email"
                 placeholder="Email"
                 required
+                onChange={handleChange}
               />
 
               <input
@@ -34,6 +61,7 @@ const Signup = () => {
                 name="password"
                 placeholder="Password"
                 required
+                onChange={handleChange}
               />
 
               <button
