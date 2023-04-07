@@ -1,6 +1,7 @@
 const express = require("express");
 const { connection } = require("./config/db");
 const { useRouter } = require("./Routes/user.routes");
+
 const cors = require("cors");
 require("dotenv").config();
 const app = express();
@@ -9,11 +10,13 @@ app.options("*", cors());
 app.use(express.json());
 app.use(cors({ origin: "*" }));
 
+
 app.get("/", (req, res) => {
   res.status(200).send({ msg: "Home Page" });
 });
 
 app.use("/users", useRouter);
+
 
 
 
