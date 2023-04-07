@@ -1,0 +1,11 @@
+#nav {
+    color: white;
+}
+
+#navDropDown:hover>div {
+    display: block;
+}
+
+#navDropDown:hover #navDownIcon {
+    transform: rotate(180deg);
+}
