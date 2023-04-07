@@ -1,14 +1,14 @@
 import "./App.css";
 import { Navbar } from "./Components/Navbar"
-import { MainGamePage } from "./Pages/MainGamePage";
+import AllRoutes from "./Pages/AllRoutes";
 
 const App: React.FC = () => {
-    return (
-        <div className="App h-[100vh] bg-[url('../public/WordHuntBackgroundLowOpacity.png')] bg-cover bg-center ">
-            <Navbar />
-            <MainGamePage />
-        </div>
-    );
-}
+  return (
+    <div  className="App h-[100vh] bg-[url('../public/WordHuntBackgroundLowOpacity.png')] bg-cover bg-center ">
+      <Navbar />
+      <AllRoutes />
+    </div>
+  );
+};
 
 export default App;
