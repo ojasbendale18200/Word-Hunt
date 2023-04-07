@@ -3,7 +3,8 @@ const userSchema = mongoose.Schema({
   name: String,
   email: String,
   password: String,
-  matchData:{}
+  matchData:{},
+  status: String
 });
 
 const UserModel = mongoose.model("user", userSchema);
