@@ -6,6 +6,7 @@ import React, { useState } from "react";
 import { login } from "../utils/types";
 import { useNavigate } from "react-router-dom";
 // import {io} from 'socket.io-client';
+import "../Styles/Universal.css"
 
 const Login = () => {
   // const socket = io('http://localhost:4321');
@@ -39,7 +40,7 @@ const Login = () => {
 
   return (
     <div className="flex min-h-full items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-8">
+      <div id="glass" className="w-full max-w-md space-y-8">
         <div>
           <img
             className="mx-auto h-12 w-auto"

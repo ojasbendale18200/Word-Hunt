@@ -4,6 +4,7 @@ import { register } from "../utils/types";
 import axios, { AxiosResponse } from "axios";
 
 import { useNavigate } from "react-router-dom";
+import "../Styles/Universal.css"
 
 
 const Signup = () => {
@@ -62,9 +63,9 @@ const Signup = () => {
   };
   return (
     <div>
-      <div className="bg-gray-100 min-h-screen flex flex-col">
+      <div className=" min-h-screen flex flex-col">
         <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center justify-center px-2">
-          <div className="bg-white px-6 py-8 rounded shadow-md text-black w-full">
+          <div id="glass" className=" px-6 py-8 rounded shadow-md text-black w-full">
             <h1 className="mb-8 text-3xl text-center">Sign up</h1>
             <form>
               <input
