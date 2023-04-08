@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import { GameCard } from "../Components/GameCard";
 import { useState } from "react";
-import io from "socket.io-client";
-import { Game } from "../utils/types";
+import { AllRoutesProps, Game } from "../utils/types";
 
-const socket = io("http://localhost:4321");
 
 const gameStateInitial = {
   _id: "",
@@ -25,7 +23,7 @@ const gameStateInitial = {
   },
 };
 
-export const MainGamePage: React.FC = () => {
+export const MainGamePage: React.FC<AllRoutesProps> = ({ socket }) => {
   const [countryInput, setCountryInput] = useState<string>("");
   const [nameInput, setNameInput] = useState<string>("");
   const [animalInput, setAnimalInput] = useState<string>("");
@@ -34,8 +32,8 @@ export const MainGamePage: React.FC = () => {
   const [letter, setLetter] = useState<string>("B");
   const [timer, setTimer] = React.useState<number>(60);
   const [game, setGame] = React.useState<Game>(gameStateInitial);
-  const [opponentsName, setOpponentsName] = React.useState<string>("")
-  const [opponentsScore, setOpponentsScore] = React.useState<number>(0)
+  const [opponentsName, setOpponentsName] = React.useState<string>("");
+  const [opponentsScore, setOpponentsScore] = React.useState<number>(0);
 
   const handleChange = (inp: string, inputName: string) => {
     if (inputName === "country") {
@@ -69,13 +67,22 @@ export const MainGamePage: React.FC = () => {
   };
 
   // listen to game created event
-  socket.on("gameCreated", (game) => {
+  socket.on("gameCreated", (game: Game) => {
     setGame(game);
     // get opponents name and score
+    if (game.player_1.socketId === socket.id) {
+      setOpponentsName(game.player_2.name);
+      setOpponentsScore(game.player_2.score);
+    } else {
+      setOpponentsName(game.player_1.name);
+      setOpponentsScore(game.player_1.score);
+    }
   });
 
-  // to start and stop the timer.
-  React.useEffect(() => {}, [timer]);
+  // emit event to start the timer on the server.
+  React.useEffect(() => {
+    socket.emit("startTimer", game._id);
+  }, []);
 
   // to update the score of the user on the server
   React.useEffect(() => {

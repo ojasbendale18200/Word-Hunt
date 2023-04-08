@@ -1,16 +1,9 @@
 import React from "react";
-import io from "socket.io-client";
+import { AllRoutesProps } from "../utils/types";
+import { User } from "../utils/types";
 
-const socket = io("http://localhost:4321");
 
-interface User {
-  userID: string;
-  name: string;
-  email: string;
-  status: string;
-}
-
-const UsersList: React.FC = () => {
+const UsersList: React.FC<AllRoutesProps> = ({socket}) => {
   const [users, setUsers] = React.useState<User[]>([]);
   const [token, setToken] = React.useState<string>("");
 
