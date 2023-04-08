@@ -71,6 +71,10 @@ const userSocketHandler = (io, socket) => {
         }
 
     });
+
+    socket.on("scoreUpdate", async({score,socketId,gameId}) =>{
+        // update score of one of the user after matching the socketId
+    })
 }
 
 const createGame = async (player_1, player_2) => {
