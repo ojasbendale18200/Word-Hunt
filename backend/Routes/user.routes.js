@@ -19,7 +19,7 @@ useRouter.get("/", async(req, res) => {
 })
 
 useRouter.post("/register", (req, res) => {
-  const { name, email, password} = req.body;
+  const { name, email, password, status } = req.body;
 
   try {
     bcrypt.hash(password, 5, async (err, result) => {
@@ -28,7 +28,7 @@ useRouter.post("/register", (req, res) => {
           email,
           password: result,
           name,
-          
+          status,
         });
         await user.save();
         res.status(200).send({ msg: "New User Registered" });

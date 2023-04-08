@@ -2,8 +2,10 @@
 import React, { useState } from "react";
 import { register } from "../utils/types";
 import axios, { AxiosResponse } from "axios";
+
 import { useNavigate } from "react-router-dom";
 import "../Styles/Universal.css"
+
 
 const Signup = () => {
   const initData = {
@@ -12,6 +14,7 @@ const Signup = () => {
     password: "",
   };
   const [userData, setUserData] = useState<register>(initData);
+
   const navigate = useNavigate();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,6 +24,18 @@ const Signup = () => {
 
   const handleClick = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
+
+    try {
+      let res: AxiosResponse = await axios.post(
+        `http://localhost:4321/users/register`,
+        userData
+      );
+      console.log(res);
+      // if (res.status === 200) {
+      // }
+    } catch (error) {
+      console.log(error);
+    }
 
     if (
       userData.name === "" ||
@@ -43,6 +58,7 @@ const Signup = () => {
       } catch (error) {
         console.log(error);
       }
+
     }
   };
   return (
