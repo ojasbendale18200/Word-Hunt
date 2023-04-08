@@ -3,6 +3,7 @@ const { connection } = require("./config/db");
 const { useRouter } = require("./Routes/user.routes");
 
 const cors = require("cors");
+const { dataRouter } = require("./Routes/data.routes");
 require("dotenv").config();
 const app = express();
 
@@ -17,7 +18,7 @@ app.get("/", (req, res) => {
 
 app.use("/users", useRouter);
 
-
+app.use("/data",dataRouter)
 
 
 // Socket
