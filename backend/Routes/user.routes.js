@@ -18,9 +18,15 @@ useRouter.get("/", async(req, res) => {
 	}
 })
 
-useRouter.post("/register", (req, res) => {
+useRouter.post("/register", async(req, res) => {
   const { name, email, password, status } = req.body;
-
+  const isUserPresent = await UserModel.find({ email: email });
+	if (isUserPresent.length) {
+		return res.send({
+			message: "User AlreadyExists",
+			data: isUserPresent[0].email,
+		});
+	}
   try {
     bcrypt.hash(password, 5, async (err, result) => {
       if (result) {
