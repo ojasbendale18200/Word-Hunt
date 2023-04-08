@@ -3,6 +3,8 @@ import { Route, Routes } from "react-router-dom";
 import { MainGamePage } from "../Pages/MainGamePage";
 import Signup from "./Signup";
 import Login from "./Login";
+import UsersList from "./UsersList";
+import SingleUserGame from "./SingleUserGame";
 import { Home } from "./Home";
 
 const AllRoutes = () => {
@@ -21,6 +23,8 @@ const AllRoutes = () => {
                 <Route path="/game" element={<MainGamePage />} />
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
+                <Route path="/userList" element={<UsersList />} />
+                <Route path="/singleuser" element={<SingleUserGame />} />
                 <Route path="*" element={pageNotFound()} />
             </Routes>
         </div>
