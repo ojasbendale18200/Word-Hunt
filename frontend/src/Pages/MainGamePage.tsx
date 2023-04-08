@@ -6,7 +6,9 @@ export const MainGamePage: React.FC = () => {
     const [countryInput, setCountryInput] = useState<string>("");
     const [nameInput, setNameInput] = useState<string>("");
     const [animalInput, setAnimalInput] = useState<string>("");
-    console.log()
+    const [score, setScore] = useState<number>(0);
+    const [alertBox, setAlertBox] = useState<boolean>(false);
+    const [letter, setLetter] = useState<string>("B");
     const handleChange = (inp: string, inputName: string) => {
         if (inputName === "country") {
             setCountryInput(inp);
@@ -16,9 +18,36 @@ export const MainGamePage: React.FC = () => {
             setAnimalInput(inp);
         }
     }
+    const handleSubmit = () => {
+        type objToSend = {
+            country: string,
+            name: string,
+            animal: string
+        }
+        const dataToSend: objToSend = {
+            country: countryInput,
+            name: nameInput,
+            animal: animalInput
+        }
+        if (countryInput === "" || nameInput === "" || animalInput === "") {
+            setAlertBox(true);
+            setTimeout(() => {
+                setAlertBox(false);
+            }, 3000)
+        } else {
+            console.log(dataToSend);
+        }
+    }
     return (
-        <div className='text-white font-[cursive] flex items-center h-3/4 border'>
-            <GameCard handleChange={handleChange} />
+        <div className='relative'>
+            {alertBox &&
+                <div className="absolute right-[45%] transition duration-500 m-auto text-center p-4 mb-4 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 text-lg" role="alert">
+                    <span className="font-medium">All fields required!</span>
+                </div>
+            }
+            <div className=' text-white font-[cursive] flex items-center h-[700px]'>
+                <GameCard handleChange={handleChange} handleSubmit={handleSubmit} score={score} letter={letter} />
+            </div>
         </div>
     )
 }
