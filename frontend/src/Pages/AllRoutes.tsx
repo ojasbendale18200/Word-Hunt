@@ -4,6 +4,7 @@ import {MainGamePage} from "../Pages/MainGamePage";
 import Signup from "./Signup";
 import Login from "./Login";
 import UsersList from "./UsersList";
+import SingleUserGame from "./SingleUserGame";
 
 const AllRoutes = () => {
   return (
@@ -13,6 +14,7 @@ const AllRoutes = () => {
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/userList" element={<UsersList />} />
+        <Route path="/singleuser" element={<SingleUserGame />} />
       </Routes>
     </div>
   );
