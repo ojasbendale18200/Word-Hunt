@@ -34,7 +34,7 @@ const Signup = () => {
       // }
     } catch (error) {
       console.log(error);
-
+    }
 
     if (
       userData.name === "" ||
