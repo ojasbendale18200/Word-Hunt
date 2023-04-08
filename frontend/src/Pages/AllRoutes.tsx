@@ -25,6 +25,7 @@ const AllRoutes = () => {
                 <Route path="/login" element={<Login />} />
                 <Route path="/userList" element={<UsersList />} />
                 <Route path="/singleuser" element={<SingleUserGame />} />
+                <Route path="/multiplayer" element={<MainGamePage />} />
                 <Route path="*" element={pageNotFound()} />
             </Routes>
         </div>
