@@ -5,9 +5,9 @@ import "../Styles/Universal.css"
 import { Link, useNavigate } from 'react-router-dom';
 import { GoHome } from "react-icons/go";
 
-export const Navbar: React.FC = () => {
-    const authentication = localStorage.getItem("userToken");
-    const isAuth = true;
+export const Navbar = () => {
+    const authentication = localStorage.getItem("userToken") || null;
+    const isAuth = authentication ? true : false;
     const [gr, setGr] = useState(false);
     const navigate = useNavigate();
     const gameRules = () => {

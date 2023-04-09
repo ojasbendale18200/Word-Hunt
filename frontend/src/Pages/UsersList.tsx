@@ -117,7 +117,7 @@ const UsersList: React.FC<AllRoutesProps> = ({ socket }) => {
                 id='glassWA' className="alertWarning right-[34.7%] top-[-9%] w-[30%] z-10 absolute transition duration-500 m-auto text-center p-4 mb-4 rounded-lg dark:text-yellow-300 bg-[rgba(255,255,255,0.2)] text-lg"
                 role="alert"
             >
-                <span className="font-medium">You have an invitation from {invitationFrom}</span>
+                <span className="font-medium">You have an invitation from {name}</span>
                 <div className="flex justify-between px-5 mt-8">
                     <button className='text-white hover:animate-bounce transition duration-500 hover:text-green-500'>Accept</button>
                     <button className="text-white hover:animate-ping transition duration-500 hover:text-red-500">Reject</button>
