@@ -37,8 +37,12 @@ export interface AllRoutesProps {
 }
 
 export interface User {
-  userID: string;
+  _id: string;
   name: string;
   email: string;
   status: string;
+}
+
+export interface Invitation {
+  msg : string;
 }
