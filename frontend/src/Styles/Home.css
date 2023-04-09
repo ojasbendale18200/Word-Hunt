@@ -139,3 +139,47 @@
         filter: blur(0px);
     }
 }
+
+/* Welcome animation */
+
+#welcomeAnimation>div:first-child {
+    animation: zoomIn 700ms;
+}
+
+@keyframes zoomIn {
+    0% {
+        transform: scale(0);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+#welcomeAnimation>div:last-child>img:first-child {
+    animation: word 1000ms;
+}
+
+#welcomeAnimation>div:last-child>img:last-child {
+    animation: hunt 1000ms;
+}
+
+@keyframes word {
+    0% {
+        transform: translateX(-100%);
+    }
+    
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes hunt {
+    0% {
+        transform: translateX(100%);
+    }
+    
+    100% {
+        transform: translateX(0);
+    }
+}
