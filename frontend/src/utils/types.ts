@@ -7,28 +7,27 @@ export interface register {
   password: string;
 }
 
-
 export interface login {
   email: string;
   password: string;
 }
 
 export interface Game {
-  _id : string,
-  winner_socketId : string;
-  winner_name : string;
-  winner_score : number;
+  _id: string;
+  winner_socketId: string;
+  winner_name: string;
+  winner_score: number;
   player_1: {
-      _id: string;
-      name: string;
-      score: number;
-      socketId: string;
+    _id: string;
+    name: string;
+    score: number;
+    socketId: string;
   };
   player_2: {
-      _id: string;
-      name: string;
-      score: number;
-      socketId: string;
+    _id: string;
+    name: string;
+    score: number;
+    socketId: string;
   };
 }
 
@@ -44,5 +43,35 @@ export interface User {
 }
 
 export interface Invitation {
-  msg : string;
+  msg: string;
 }
+
+export interface InvitationFrom {
+  name: string;
+  email: string;
+  password: string;
+  status: string;
+  socketId: string;
+  matchData: 
+    {
+      winner_socketId: string;
+      winner_name: string;
+      winner_score: number;
+      player_1: {
+        _id: string;
+        name: string;
+        score: number;
+        socketId: string;
+      };
+      player_2: {
+        _id: string;
+        name: string;
+        score: number;
+        socketId: string;
+      };
+    }[];
+  __v: number,
+  _id: string,
+}
+
+

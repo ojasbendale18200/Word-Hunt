@@ -66,36 +66,42 @@ export const MainGamePage: React.FC<AllRoutesProps> = ({ socket }) => {
     }
   };
 
-  // listen to game created event
-  socket.on("gameCreated", (game: Game) => {
+  // // listen to game created event
+  socket.on("gameCreated", async (game: Game) => {
     setGame(game);
+    console.log(game)
     // get opponents name and score
-    if (game.player_1.socketId === socket.id) {
-      setOpponentsName(game.player_2.name);
-      setOpponentsScore(game.player_2.score);
-    } else {
-      setOpponentsName(game.player_1.name);
-      setOpponentsScore(game.player_1.score);
+    if(game._id !== ""){
+      if (game.player_1.socketId === socket.id) {
+        setOpponentsName(game.player_2.name);
+        setOpponentsScore(game.player_2.score);
+      } else {
+        setOpponentsName(game.player_1.name);
+        setOpponentsScore(game.player_1.score);
+      }
     }
   });
 
-  // emit event to start the timer on the server.
+  // // emit event to start the timer on the server.
   React.useEffect(() => {
-    socket.emit("startTimer", game._id);
+    console.log(game._id)
+    if(game._id !== ""){
+        socket.emit("startTimer", game._id.toString());
+    }
   }, []);
 
-  // to update the score of the user on the server
-  React.useEffect(() => {
-    socket.emit("scoreUpdate", {
-      score,
-      socketId: socket.id,
-      gameId: game._id,
-    });
+  // // to update the score of the user on the server
+  // React.useEffect(() => {
+  //   socket.emit("scoreUpdate", {
+  //     score,
+  //     socketId: socket.id,
+  //     gameId: game._id,
+  //   });
 
-    return () => {
-      socket.off("scoreUpdate");
-    };
-  }, [score]);
+  //   return () => {
+  //     socket.off("scoreUpdate");
+  //   };
+  // }, [score]);
 
   return (
     <div className="relative">
