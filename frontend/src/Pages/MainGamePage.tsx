@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GameCard } from '../Components/GameCard';
 import { useState } from 'react';
 
@@ -9,6 +9,7 @@ export const MainGamePage: React.FC = () => {
     const [score, setScore] = useState<number>(0);
     const [alertBox, setAlertBox] = useState<boolean>(false);
     const [letter, setLetter] = useState<string>("B");
+    const [time, setTime] = useState<number>(50);
     const handleChange = (inp: string, inputName: string) => {
         if (inputName === "country") {
             setCountryInput(inp);
@@ -18,6 +19,19 @@ export const MainGamePage: React.FC = () => {
             setAnimalInput(inp);
         }
     }
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setTime(prev => {
+                if (prev <= 1) {
+                    clearInterval(timer);
+                }
+                return prev - 1;
+            })
+        }, 1000)
+        return () => {
+            clearInterval(timer);
+        }
+    }, [])
     const handleSubmit = () => {
         type objToSend = {
             country: string,
@@ -41,12 +55,12 @@ export const MainGamePage: React.FC = () => {
     return (
         <div className='relative'>
             {alertBox &&
-                <div className="absolute right-[45%] transition duration-500 m-auto text-center p-4 mb-4 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 text-lg" role="alert">
+                <div className="alertWarning absolute right-[45%] transition duration-500 m-auto text-center p-4 mb-4 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 text-lg" role="alert">
                     <span className="font-medium">All fields required!</span>
                 </div>
             }
             <div className=' text-white font-[cursive] flex items-center h-[700px]'>
-                <GameCard handleChange={handleChange} handleSubmit={handleSubmit} score={score} letter={letter} />
+                <GameCard handleChange={handleChange} handleSubmit={handleSubmit} score={score} letter={letter} time={time} />
             </div>
         </div>
     )

@@ -17,17 +17,15 @@ const AllRoutes = () => {
         )
     }
     return (
-        <div>
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/game" element={<MainGamePage />} />
-                <Route path="/signup" element={<Signup />} />
-                <Route path="/login" element={<Login />} />
-                <Route path="/userList" element={<UsersList />} />
-                <Route path="/singleuser" element={<SingleUserGame />} />
-                <Route path="*" element={pageNotFound()} />
-            </Routes>
-        </div>
+        <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/multi" element={<MainGamePage />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/userlist" element={<UsersList />} />
+            <Route path="/single" element={<SingleUserGame />} />
+            <Route path="*" element={pageNotFound()} />
+        </Routes>
     );
 };
 
