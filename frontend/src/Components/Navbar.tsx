@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { GoHome } from "react-icons/go";
 
 export const Navbar: React.FC = () => {
+    const authentication = localStorage.getItem("userToken");
     const isAuth = true;
     const [gr, setGr] = useState(false);
     const navigate = useNavigate();
@@ -38,7 +39,7 @@ export const Navbar: React.FC = () => {
                 <Link to={"/"}><GoHome className={"h-full hover:text-[#0099FF]"} /></Link>
                 <div id='navDropDown' className='relative hover:text-[#0099FF]'>
                     <p className='hover:text-[#0099FF]' >UserName <AiFillCaretDown id='navDownIcon' className='inline transition-transform duration-500' /> </p>
-                    <div id='glass' className='slideInRight hidden z-10 absolute bg-white w-auto text-black p-3 right-[-25px] rounded-[15px]' >
+                    <div id='glassWA' className='slideInRight hidden z-10 absolute bg-white w-auto text-black p-3 right-[-25px] rounded-[15px]' >
                         <h3 className='p-2 hover:text-[#0099FF] mb-2 hover:cursor-pointer text-white whitespace-nowrap' onClick={() => { setGr(!gr) }}>Game Rules</h3>
                         {isAuth && <h3 className='p-2 hover:text-[#0099FF] mb-2 hover:cursor-pointer text-white whitespace-nowrap' onClick={() => { navigate("/matchhistory") }}>Previous Games</h3>}
                         {isAuth && <h3 className='p-2 hover:text-[#0099FF] mb-2 hover:cursor-pointer text-white whitespace-nowrap'>Logout</h3>}

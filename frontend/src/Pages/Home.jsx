@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import "../Styles/Home.css"
 
 export const Home = () => {
+    const authentication = JSON.parse(localStorage.getItem(""));
     const isAuth = false;
 
     return (
