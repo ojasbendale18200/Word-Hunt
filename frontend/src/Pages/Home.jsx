@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import "../Styles/Home.css"
 
 export const Home = () => {
-    const authentication = JSON.parse(localStorage.getItem(""));
-    const isAuth = false;
+    const authentication = localStorage.getItem("userToken") || null;
+    const isAuth = authentication ? true : false;
 
     return (
         <div id='home' className='font-[cursive] grid grid-cols-2 bg-[#27282c]'>
