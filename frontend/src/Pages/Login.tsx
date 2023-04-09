@@ -31,7 +31,7 @@ const Login = () => {
                     payload
                 );
                 localStorage.setItem("userToken", res.data.token);
-                navigate("/");
+                navigate("/userList");
             } catch (err) {
                 alert("wrong Crendentials");
             }

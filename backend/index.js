@@ -1,6 +1,7 @@
 const express = require("express");
 const { connection } = require("./config/db");
 const { useRouter } = require("./Routes/user.routes");
+const {UserModel} = require("./Models/user.model");
 require("dotenv").config();
 const http = require("http");
 const { userSocketHandler } = require("./SocketHandlers/user.socket");
@@ -46,13 +47,22 @@ io.on("connection", (socket) => {
   console.log(`A user is connected : ${socket.id}`);
 
   userSocketHandler(io, socket);
-  inviteSocketHandler(io,socket);
+  inviteSocketHandler(io, socket);
   gameSocketHandler(io, socket);
 
 
-  socket.on("disconnect", () => {
-    console.log("A user disconnected")
-  })
+  // update user's status to "offline" when they disconnect
+  socket.on("disconnect", async () => {
+    console.log(`disconnected : ${socket.id}`)
+    const user = await UserModel.findOne({ socketId: socket.id });
+    if (user) {
+      user.status = "offline";
+      user.socketId = "";
+      await user.save();
+      const userList = await UserModel.find({}, { _id: 1, socketId: 1, name: 1, email: 1, status: 1 });
+      io.emit("updatedStatusList", userList);
+    }
+  });
 })
 
 server.listen(process.env.port, async (req, res) => {

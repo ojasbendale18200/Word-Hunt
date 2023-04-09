@@ -12,6 +12,7 @@ const inviteSocketHandler = (io, socket) => {
         console.log("user ", invitedUsersID)
         try {
             const userToInvite = await UserModel.findById(invitedUsersID);
+            // console.log(userToInvite)
             if (userToInvite && userToInvite.status === "available") {
 
                 // get the name of the user who is inviting
@@ -20,7 +21,7 @@ const inviteSocketHandler = (io, socket) => {
                 io.to(userToInvite.socketId).emit("invitationForYou", { invitedBy: inviteFrom.name });
                 socket.on("invitationResponseFromOpponent", async (responseFromOpponent) => {
                     if (responseFromOpponent) {
-                        io.to(inviteFrom.socketId).emit("invitationResponse", { "msg": "invitation accepted" });
+                        io.to(inviteFrom.socketId).emit("invitationResponse", { msg: "Invitation Accepted" });
 
                         // change the status of both the user from available ---> in-game
                         inviteFrom.status = "in-game";
@@ -50,7 +51,7 @@ const inviteSocketHandler = (io, socket) => {
                         // io.to(game._id).emit("gameCreated", game);
                     }
                     else {
-                        io.to(inviteFrom.socketId).emit("invitationResponse", { "msg": "invitation rejected" });
+                        io.to(inviteFrom.socketId).emit("invitationResponse", { "msg": "Invitation Rejected" });
                     }
                 })
             }

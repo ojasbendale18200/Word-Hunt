@@ -7,26 +7,26 @@ const jwt = require("jsonwebtoken");
 const { UserModel } = require("../Models/user.model");
 require("dotenv").config();
 
-useRouter.get("/", async(req, res) => {
-    try {
-		const allUsers = await UserModel.find();
-		res.send({ message: `All Users Data`, data: allUsers });
-	} catch (error) {
-		res.status(400).send({
-			message: `Please Try Again Something Went Wrong!\n , ${error.message}`,
-		});
-	}
+useRouter.get("/", async (req, res) => {
+  try {
+    const allUsers = await UserModel.find();
+    res.send({ message: `All Users Data`, data: allUsers });
+  } catch (error) {
+    res.status(400).send({
+      message: `Please Try Again Something Went Wrong!\n , ${error.message}`,
+    });
+  }
 })
 
-useRouter.post("/register", async(req, res) => {
+useRouter.post("/register", async (req, res) => {
   const { name, email, password, status } = req.body;
   const isUserPresent = await UserModel.find({ email: email });
-	if (isUserPresent.length) {
-		return res.send({
-			message: "User AlreadyExists",
-			data: isUserPresent[0].email,
-		});
-	}
+  if (isUserPresent.length) {
+    return res.send({
+      message: "User AlreadyExists",
+      data: isUserPresent[0].email,
+    });
+  }
   try {
     bcrypt.hash(password, 5, async (err, result) => {
       if (result) {
@@ -71,6 +71,4 @@ useRouter.post("/login", async (req, res) => {
   }
 });
 
-module.exports = {
-  useRouter,
-};
+module.exports = { useRouter };

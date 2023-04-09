@@ -3,11 +3,28 @@ import { UList } from "../Components/UList";
 import "../Styles/Universal.css"
 import { AllRoutesProps } from "../utils/types";
 import { User } from "../utils/types";
-
+import { Invitation } from "../utils/types";
 
 const UsersList: React.FC<AllRoutesProps> = ({socket}) => {
     const [users, setUsers] = React.useState<User[]>([]);
     const [token, setToken] = React.useState<string>("");
+    const [invitationFrom, setInvitationFrom] = React.useState<string>("")
+    const [sendResponse, setSendResponse] = React.useState<boolean>(true);
+    const [invitationstatus, setInvitationStatus] = React.useState<Invitation>({msg : ""})
+
+    // listen to invitations
+    socket.on("invitationForYou", ({invitedBy})=>{
+        console.log(invitedBy);
+        // display a toast saying `${invitedBy} has sent you an invitation` => Accept / Reject
+
+        // send your response
+        socket.emit("invitationResponseFromOpponent",sendResponse);
+    })
+
+    // listen to invitation response from server
+    socket.on("invitationResponse",({msg})=>{
+        
+    })
 
     // If token is present then emit "updateStatus" event
     React.useEffect(() => {
@@ -45,7 +62,7 @@ const UsersList: React.FC<AllRoutesProps> = ({socket}) => {
         <div id="glass" className="flex flex-col border-black border-2 w-[40%] m-auto gap-2 h-[70vh] overflow-y-auto">
             {users[0] ?
                 users.map(e => {
-                    return (<UList data={e} key={e.userID} invite={handleInvite} />)
+                    return (<UList data={e} key={e._id} invite={handleInvite} />)
                 })
                 :
                 <p className="text-center text-2xl mt-5">
