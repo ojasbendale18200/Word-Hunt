@@ -7,6 +7,7 @@ import UsersList from "./UsersList";
 import SingleUserGame from "./SingleUserGame";
 import { Home } from "./Home";
 import { AllRoutesProps } from "../utils/types";
+import { MatchHistory } from "./MatchHistory";
 
 const AllRoutes: React.FC<AllRoutesProps> = ({ socket }) => {
     const pageNotFound = () => {
@@ -24,8 +25,9 @@ const AllRoutes: React.FC<AllRoutesProps> = ({ socket }) => {
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/userList" element={<UsersList socket={socket} />} />
-                <Route path="/singleuser" element={<SingleUserGame />} />
+                <Route path="/singleplayer" element={<SingleUserGame />} />
                 <Route path="/multiplayer" element={<MainGamePage socket={socket} />} />
+                <Route path="/matchhistory" element={<MatchHistory />}></Route>
                 <Route path="*" element={pageNotFound()} />
             </Routes>
         </div>

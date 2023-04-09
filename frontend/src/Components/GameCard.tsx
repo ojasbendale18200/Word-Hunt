@@ -5,14 +5,13 @@ interface propsTypes {
     handleChange: Function,
     handleSubmit: Function,
     score: number,
-    letter: string,
-    time: number
+    letter: string
 }
-export const GameCard: React.FC<propsTypes> = ({ handleChange, handleSubmit, score, letter, time }) => {
+export const GameCard: React.FC<propsTypes> = ({ handleChange, handleSubmit, score, letter }) => {
     return (
         <div id='glass' className={"w-[60vw] border flex-col m-auto p-10 rounded-3xl"}>
             <div className='hover:cursor-default grid grid-cols-3'>
-                <p className={"mb-10 text-2xl components"}>Timer - {time}</p>
+                <p className={"mb-10 text-2xl components"}>Timer - {"time"}</p>
                 <p className={"mb-10 text-2xl components"}>First Letter : {letter}</p>
                 <p className={"mb-10 text-2xl components"}>Score - {score}</p>
             </div>
