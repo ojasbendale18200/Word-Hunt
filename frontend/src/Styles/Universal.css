@@ -78,3 +78,110 @@
     width: 20px;
     right: 20%;
 }
+
+/* ANIMATIONS */
+
+/* Alerts */
+
+.alertWarning {
+    animation: animateAlert 500ms;
+}
+
+@keyframes animateAlert {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* SlideInRight */
+
+.slideInRight {
+    animation: animateDropDown 1000ms;
+}
+
+@keyframes animateDropDown {
+    0% {
+        transform: translateY(8%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* Timer */
+
+.components {
+    animation: components 1500ms;
+}
+
+
+@keyframes components {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0)
+    }
+}
+
+/* User list items */
+
+.userList {
+    animation: userList 400ms;
+}
+
+
+@keyframes userList {
+    0% {
+        transform: translateY(-20%);
+    }
+
+    100% {
+        transform: translateY(0)
+    }
+}
+
+/* glass box */
+
+#glass {
+    animation: blurAnimate 500ms;
+}
+
+@keyframes blurAnimate {
+    0% {
+        filter: blur(40px);
+    }
+
+    100% {
+        filter: blur(0);
+    }
+}
+
+/* SCROLLBAR */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    /* box-shadow: inset 0 0 5px grey; */
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #0099FF;
+    border-radius: 0px 10px 10px 0px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #0069af;
+}

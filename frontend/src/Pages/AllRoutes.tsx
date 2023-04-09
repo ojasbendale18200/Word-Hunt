@@ -21,7 +21,6 @@ const AllRoutes: React.FC<AllRoutesProps> = ({ socket }) => {
         <div>
             <Routes>
                 <Route path="/" element={<Home />} />
-                {/* <Route path="/game" element={<MainGamePage   />} /> */}
                 <Route path="/signup" element={<Signup />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/userList" element={<UsersList socket={socket} />} />

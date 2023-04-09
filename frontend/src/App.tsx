@@ -8,7 +8,7 @@ const socket = io("http://localhost:4321");
 
 const App: React.FC = () => {
     return (
-        <div className="App h-[100vh] bg-[url('../public/WordHuntBackgroundLowOpacity.png')] bg-cover bg-center ">
+        <div className="App relative">
             <Navbar />
             <AllRoutes socket={socket} />
         </div>
