@@ -4,12 +4,6 @@ import "../Styles/Universal.css"
 import { AllRoutesProps } from "../utils/types";
 import { User } from "../utils/types";
 
-interface User {
-    userID: string;
-    name: string;
-    email: string;
-    status: string;
-}
 
 const UsersList: React.FC<AllRoutesProps> = ({socket}) => {
     const [users, setUsers] = React.useState<User[]>([]);

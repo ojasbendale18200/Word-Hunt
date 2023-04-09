@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import "../Styles/Home.css"
 
 export const Home = () => {
-    const isAuth = true;
+    const isAuth = false;
     return (
         <div id='home' className='font-[cursive] grid grid-cols-2 bg-[#27282c]'>
             <div className='homeLogoDiv text-white flex flex-col py-40 items-center justify-center'>
@@ -14,8 +14,8 @@ export const Home = () => {
                 {
                     isAuth ?
                         <div className='text-white flex flex-col py-52 items-center justify-center gap-20'>
-                            <Link className='homeComponents skew-y-12 py-5 px-10' id='homeButtons' style={{ "--clr": "yellow" }} to={"/single"}><span>Single-player</span><i></i></Link>
-                            <Link className='homeComponents skew-y-12 py-5 px-10' id='homeButtons' style={{ "--clr": "red" }} to={"/multi"}><span>Multi-player</span><i></i></Link>
+                            <Link className='homeComponents skew-y-12 py-5 px-10' id='homeButtons' style={{ "--clr": "yellow" }} to={"/singleuser"}><span>Single-player</span><i></i></Link>
+                            <Link className='homeComponents skew-y-12 py-5 px-10' id='homeButtons' style={{ "--clr": "red" }} to={"/multiplayer"}><span>Multi-player</span><i></i></Link>
                         </div>
                         :
                         <div className='text-white flex flex-col pt-52 items-center justify-center gap-20'>
