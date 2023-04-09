@@ -9,6 +9,7 @@ const gameSocketHandler = (io, socket) => {
     socket.on("startTimer", async (gameId) => {
         const game = await GameModel.findOne({ _id: gameId });
         if (game) {
+            console.log(game)
             await startTimerInGame(io, gameId);
         }
     });
@@ -44,11 +45,11 @@ const startTimerInGame = async (io, gameId) => {
     timerIntervalId = setInterval(async () => {
         timer--;
         if (timer === 0) {
-            timer = 45;
+            timer = 40;
             timerResetCount++;
         }
         const game = await GameModel.findOne({ _id: gameId });
-        if (timer === 45 && timerResetCount !== 5) {
+        if (timer === 40 && timerResetCount !== 5) {
             // generate a random alphabet and send it to both the users
             const alphabet = generateRandomAlphabet()
             io.to(game.player_1.socketId).to(game.player_2.socketId).emit("newAlphabet", alphabet);
