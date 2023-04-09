@@ -14,12 +14,17 @@ const Login = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState<string>("");
     const [password, setPassword] = useState<string>("");
+    const [noDetailsAlert, setNoDetailsAlert] = useState<boolean>(false);
+    const [incorrectDetailsAlert, setIncorrectDetailsAlert] = useState<boolean>(false);
 
     const handleSubmit = async (e: React.MouseEvent<HTMLAnchorElement>) => {
         e.preventDefault();
 
         if (email === "" || password === "") {
-            alert("please fill details to continue");
+            setNoDetailsAlert(true);
+            setTimeout(() => {
+                setNoDetailsAlert(false);
+            }, 3000)
         } else {
             try {
                 const payload: login = {
@@ -33,13 +38,34 @@ const Login = () => {
                 localStorage.setItem("userToken", res.data.token);
                 navigate("/userList");
             } catch (err) {
-                alert("wrong Crendentials");
+                setIncorrectDetailsAlert(true);
+                setTimeout(() => {
+                    setIncorrectDetailsAlert(false);
+                }, 3000)
             }
         }
     };
 
     return (
-        <div id="glass" className="w-full max-w-sm m-auto my-32 px-5 py-8 text-white">
+        <div id="glass" className="w-full relative max-w-sm m-auto my-32 px-5 py-8 text-white">
+            {
+                noDetailsAlert &&
+                <div
+                    className="alertWarning absolute top-[-30%] right-[25%] transition duration-500 m-auto text-center p-4 mb-4 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 text-lg"
+                    role="alert"
+                >
+                    <span className="font-medium">All fields required!</span>
+                </div>
+            }
+            {
+                incorrectDetailsAlert &&
+                <div
+                    className="alertWarning absolute top-[-30%] right-[28%] transition duration-500 m-auto text-center p-4 mb-4 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 text-lg"
+                    role="alert"
+                >
+                    <span className="font-medium">Incorrect details</span>
+                </div>
+            }
             <div>
                 <h2 className="text-center text-3xl text-white">
                     Log in

@@ -51,6 +51,7 @@ const UsersList: React.FC<AllRoutesProps> = ({ socket }) => {
 
   React.useEffect(() => {
     // listen to invitations
+
     socket.on("invitationForYou", async ({invitedBy, name}) => {
       console.log(invitedBy);
       if (invitedBy._id !== "") {
@@ -111,6 +112,18 @@ const UsersList: React.FC<AllRoutesProps> = ({ socket }) => {
 
   return (
     <div className="text-white">
+        {
+            <div
+                id='glassWA' className="alertWarning right-[34.7%] top-[-9%] w-[30%] z-10 absolute transition duration-500 m-auto text-center p-4 mb-4 rounded-lg dark:text-yellow-300 bg-[rgba(255,255,255,0.2)] text-lg"
+                role="alert"
+            >
+                <span className="font-medium">You have an invitation from {invitationFrom}</span>
+                <div className="flex justify-between px-5 mt-8">
+                    <button className='text-white hover:animate-bounce transition duration-500 hover:text-green-500'>Accept</button>
+                    <button className="text-white hover:animate-ping transition duration-500 hover:text-red-500">Reject</button>
+                </div>
+            </div>
+        }
       <h1 className="text-center text-4xl my-10">Users List</h1>
       <div
         id="glass"
