@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { GameCard } from "../Components/GameCard";
 import { useState } from "react";
 import { AllRoutesProps, Game } from "../utils/types";
-
+import { useNavigate } from "react-router-dom";
 
 const gameStateInitial = {
   _id: "",
@@ -30,10 +30,12 @@ export const MainGamePage: React.FC<AllRoutesProps> = ({ socket }) => {
   const [score, setScore] = useState<number>(0);
   const [alertBox, setAlertBox] = useState<boolean>(false);
   const [letter, setLetter] = useState<string>("B");
-  const [timer, setTimer] = React.useState<number>(60);
+  const [timer, setTimer] = React.useState<number>(40);
   const [game, setGame] = React.useState<Game>(gameStateInitial);
   const [opponentsName, setOpponentsName] = React.useState<string>("");
   const [opponentsScore, setOpponentsScore] = React.useState<number>(0);
+
+  const navigate = useNavigate();
 
   const handleChange = (inp: string, inputName: string) => {
     if (inputName === "country") {
@@ -69,9 +71,9 @@ export const MainGamePage: React.FC<AllRoutesProps> = ({ socket }) => {
   // // listen to game created event
   socket.on("gameCreated", async (game: Game) => {
     setGame(game);
-    console.log(game)
+    console.log(game);
     // get opponents name and score
-    if(game._id !== ""){
+    if (game._id !== "") {
       if (game.player_1.socketId === socket.id) {
         setOpponentsName(game.player_2.name);
         setOpponentsScore(game.player_2.score);
@@ -79,29 +81,36 @@ export const MainGamePage: React.FC<AllRoutesProps> = ({ socket }) => {
         setOpponentsName(game.player_1.name);
         setOpponentsScore(game.player_1.score);
       }
+
+      // // emit event to start the timer on the server.
+      console.log(game._id, "start");
+      socket.emit("startTimer", game._id.toString());
     }
   });
 
-  // // emit event to start the timer on the server.
-  React.useEffect(() => {
-    console.log(game._id)
-    if(game._id !== ""){
-        socket.emit("startTimer", game._id.toString());
-    }
-  }, []);
+  // get a new alphabet from the backend
+  socket.on("newAlphabet", async (alphabet) => {
+    setLetter((e) => (e = alphabet));
+  });
 
-  // // to update the score of the user on the server
-  // React.useEffect(() => {
-  //   socket.emit("scoreUpdate", {
-  //     score,
-  //     socketId: socket.id,
-  //     gameId: game._id,
-  //   });
+  // listen to updateTimer event
+  socket.on("updatedTimer", async (timer) => {
+    setTimer((e) => (e = timer));
+  });
 
-  //   return () => {
-  //     socket.off("scoreUpdate");
-  //   };
-  // }, [score]);
+  // listen to game over event
+  socket.on("gameOver", () => {
+    navigate("/matchhistory");
+  });
+
+  // to update the score of the user on the server
+  const handleScore = () => {
+    socket.emit("scoreUpdate", {
+      score,
+      socketId: socket.id,
+      gameId: game._id,
+    });
+  };
 
   return (
     <div className="relative">
@@ -115,10 +124,19 @@ export const MainGamePage: React.FC<AllRoutesProps> = ({ socket }) => {
       )}
       <div className=" text-white font-[cursive] flex items-center h-[700px]">
         <GameCard
+          setCountryInput={setCountryInput}
+          setNameInput={setNameInput}
+          setAnimalInput={setAnimalInput}
+          country={countryInput}
+          name={nameInput}
+          animal={animalInput}
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           score={score}
           letter={letter}
+          timer={timer}
+          setScore={setScore}
+          handleScore= {handleScore}
         />
       </div>
     </div>

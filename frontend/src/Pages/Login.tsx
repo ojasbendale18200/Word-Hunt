@@ -36,7 +36,7 @@ const Login = () => {
                     payload
                 );
                 localStorage.setItem("userToken", res.data.token);
-                navigate("/userList");
+                navigate("/");
             } catch (err) {
                 setIncorrectDetailsAlert(true);
                 setTimeout(() => {
