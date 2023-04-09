@@ -1,3 +1,6 @@
+import { Socket } from "socket.io-client";
+import { DefaultEventsMap } from "socket.io/dist/typed-events";
+
 export interface register {
   name: string;
   email: string;
@@ -10,3 +13,32 @@ export interface login {
   password: string;
 }
 
+export interface Game {
+  _id : string,
+  winner_socketId : string;
+  winner_name : string;
+  winner_score : number;
+  player_1: {
+      _id: string;
+      name: string;
+      score: number;
+      socketId: string;
+  };
+  player_2: {
+      _id: string;
+      name: string;
+      score: number;
+      socketId: string;
+  };
+}
+
+export interface AllRoutesProps {
+  socket: Socket<DefaultEventsMap, DefaultEventsMap>;
+}
+
+export interface User {
+  userID: string;
+  name: string;
+  email: string;
+  status: string;
+}

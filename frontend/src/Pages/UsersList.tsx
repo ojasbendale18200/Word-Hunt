@@ -1,9 +1,8 @@
 import React from "react";
-import io from "socket.io-client";
 import { UList } from "../Components/UList";
 import "../Styles/Universal.css"
-
-const socket = io("http://localhost:4321");
+import { AllRoutesProps } from "../utils/types";
+import { User } from "../utils/types";
 
 interface User {
     userID: string;
@@ -12,8 +11,8 @@ interface User {
     status: string;
 }
 
-const UsersList: React.FC = () => {
-    const [users, setUsers] = React.useState<User[]>([{ userID: "hello", name: "Something", email: "smoething@gmail.com", status: "Active" }]);
+const UsersList: React.FC<AllRoutesProps> = ({socket}) => {
+    const [users, setUsers] = React.useState<User[]>([]);
     const [token, setToken] = React.useState<string>("");
 
     // If token is present then emit "updateStatus" event

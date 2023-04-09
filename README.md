@@ -1,0 +1,140 @@
+# Word-Hunt
+
+Word-Hunt is a popular game that is often played in single player or multiplayer groups, and can be enjoyed for fun and removing your stress.
+
+## API Reference
+
+#### Backend API
+
+```http
+  GET / *need to be updated*
+```
+
+| End Point      | Type     | Description            |
+| :------------  | :------- | :--------------------- |
+| `/`            | `string` |  Home                  |
+| `/game`        | `string` |  MainGamePage          |
+| `/signup`      | `string` |  Signup                |
+| `/login`       | `string` |  Login                 |
+| `/userList`    | `string` |  UsersList             |
+| `/singleuser`  | `string` |  SingleUserGame        |
+| `/*`           | `string` |  404 Not Found page    |
+
+## Tech Stack
+
+**Front-end :** HTML , CSS , JavaScript , Reactjs , Typescript, Tailwind CSS , Chakra UI,
+
+**Back-end :**  Socket.io , JSON-Web-Token, CORS, Dotenv, Bcrypt (for hashing), Mongoose, Nodemon ,  NodeJS, Express JS, MongoAtlas.
+
+## Color Reference
+
+| Color     | Hex                                                              |
+| --------- | ---------------------------------------------------------------- |
+| Primary   | ![#27282c](https://via.placeholder.com/10/27282c?text=+) #27282c |
+| Secondary | ![#6eff3e](https://via.placeholder.com/10/6eff3e?text=+) #6eff3e |
+
+## Badges
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b05289d0-09c8-4f2a-833c-a58d8cd7a1fd/deploy-status)](link need to be updated)
+
+[![](https://img.shields.io/github/last-commit/ojasbendale18200/Word-Hunt?logo=Word-Hunt&style=for-the-badge)]()
+
+[![](https://img.shields.io/github/contributors-anon/ojasbendale18200/Word-Hunt?style=for-the-badge)]()
+
+[![](https://img.shields.io/github/languages/count/ojasbendale18200/Word-Hunt?style=for-the-badge)]()
+
+## Team Members
+
+| Member Name       |   Link                                |                    
+| :------------     | :------------------------------------ |
+| `Himanshu Tyagi`  | https://github.com/Himanshu-t-y-a-g-i | 
+| `Ojas Bendale`    | https://github.com/ojasbendale18200   | 
+| `Mayank Singh`    | https://github.com/mak-1997           | 
+| `Riya Shrivastava`| https://github.com/riyashri07         | 
+
+## Deployment
+
+To deploy this project run
+
+```bash
+npm run build
+npm run deploy
+```
+
+## Pages
+
+-   Home page
+-   Allroutes page
+-   Login page
+-   MainGame page
+-   MatchHistory page
+-   Signup page
+-   UserLists page
+-   SingleUserGame page
+
+## Features
+
+-   User Register
+-   User login
+-   Single player Game play
+-   Multiplayer Game play
+-   Laederboard
+-   List of Users/Players
+
+## ScreenShots
+
+### 1. Login
+<!--![file name](file url)-->
+
+### 2. Signup
+
+<!--![file name](file url)-->
+
+### 3. MainGame
+
+<!--![file name](file url)-->
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/ojasbendale18200/Word-Hunt.git
+```
+
+Go to the project directory
+
+```bash
+  cd Word-Hunt
+```
+
+Install dependencies
+
+```bash
+  npm install
+  npm i axios
+  npm i react-scripts
+  npm i react-icons
+  npm i react-router-dom
+  npm i json-server
+  npm i chakra-ui
+  npm i socket.io-client
+  npm i typescript
+  npm i bcrypt
+  npm i cors
+  npm i dotenv
+  npm i express
+  npm i jsonwebtoken
+  npm i mongoose
+  npm i nodemon
+  npm i socket.io
+```
+
+Start the server
+
+```bash
+  npm run server
+  npm start
+```
+
+## FAQ

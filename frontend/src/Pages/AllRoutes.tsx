@@ -6,8 +6,9 @@ import Login from "./Login";
 import UsersList from "./UsersList";
 import SingleUserGame from "./SingleUserGame";
 import { Home } from "./Home";
+import { AllRoutesProps } from "../utils/types";
 
-const AllRoutes = () => {
+const AllRoutes: React.FC<AllRoutesProps> = ({ socket }) => {
     const pageNotFound = () => {
         return (
             <div className="m-auto w-[30%] flex flex-col items-center">
@@ -17,15 +18,17 @@ const AllRoutes = () => {
         )
     }
     return (
-        <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/multi" element={<MainGamePage />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/userlist" element={<UsersList />} />
-            <Route path="/single" element={<SingleUserGame />} />
-            <Route path="*" element={pageNotFound()} />
-        </Routes>
+        <div>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/userList" element={<UsersList socket={socket} />} />
+                <Route path="/singleuser" element={<SingleUserGame />} />
+                <Route path="/multiplayer" element={<MainGamePage socket={socket} />} />
+                <Route path="*" element={pageNotFound()} />
+            </Routes>
+        </div>
     );
 };
 
