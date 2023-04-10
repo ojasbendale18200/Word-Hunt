@@ -42,7 +42,7 @@ export const Navbar = () => {
                     <div id='glassWA' className='slideInRight hidden z-10 absolute bg-white w-auto text-black p-3 right-[-25px] rounded-[15px]' >
                         <h3 className='p-2 hover:text-[#0099FF] mb-2 hover:cursor-pointer text-white whitespace-nowrap' onClick={() => { setGr(!gr) }}>Game Rules</h3>
                         {isAuth && <h3 className='p-2 hover:text-[#0099FF] mb-2 hover:cursor-pointer text-white whitespace-nowrap' onClick={() => { navigate("/matchhistory") }}>Previous Games</h3>}
-                        {isAuth && <h3 className='p-2 hover:text-[#0099FF] mb-2 hover:cursor-pointer text-white whitespace-nowrap'>Logout</h3>}
+                        {isAuth && <h3 className='p-2 hover:text-[#0099FF] mb-2 hover:cursor-pointer text-white whitespace-nowrap' onClick={() => { localStorage.setItem("userToken", ""); navigate("/") }}>Logout</h3>}
                     </div>
                 </div>
             </div>
