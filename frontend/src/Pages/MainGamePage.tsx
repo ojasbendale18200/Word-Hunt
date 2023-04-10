@@ -104,9 +104,10 @@ export const MainGamePage: React.FC<AllRoutesProps> = ({ socket }) => {
   });
 
   // to update the score of the user on the server
-  const handleScore = () => {
+  const handleScore = (finalScore: number) => {
+    console.log(finalScore)
     socket.emit("scoreUpdate", {
-      score,
+      score : finalScore,
       socketId: socket.id,
       gameId: game._id,
     });

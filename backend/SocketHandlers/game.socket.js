@@ -4,20 +4,24 @@ const { UserModel } = require("../Models/user.model");
 const { GameModel } = require("../Models/game.model");
 
 const gameSocketHandler = (io, socket) => {
-
+    let gameAdded = false;
+    
     // listen to start timer event
     socket.on("startTimer", async (gameId) => {
+        let timerStarted = false;
         const game = await GameModel.findOne({ _id: gameId });
-        if (game) {
-            console.log(game)
-            await startTimerInGame(io, gameId);
+        if (game && !timerStarted) {
+            console.log("game");
+            timerStarted = true;
+            await startTimerInGame(io, gameId,gameAdded);
         }
     });
 
     // listen to update score event
     socket.on("scoreUpdate", async ({ score, socketId, gameId }) => {
+        console.log(score)
         try {
-            const game = await GameModel.findOne({ _id: gameId });
+            const game = await GameModel.findOne({ _id: gameId.toString() });
             if (!game) {
                 throw new Error("Game not found");
             }
@@ -37,13 +41,11 @@ const gameSocketHandler = (io, socket) => {
 
 }
 
-const startTimerInGame = async (io, gameId) => {
-    let timer = 45;
+const startTimerInGame = async (io, gameId,gameAdded) => {
+    let timer = 40;
     let timerIntervalId = null;
     let timerResetCount = 0;
-
     timerIntervalId = setInterval(async () => {
-        timer--;
         if (timer === 0) {
             timer = 40;
             timerResetCount++;
@@ -59,8 +61,14 @@ const startTimerInGame = async (io, gameId) => {
         io.to(game.player_1.socketId).to(game.player_2.socketId).emit("updatedTimer", timer)
         if (timerResetCount === 5) {
             io.emit("gameOver", game)
+            if (!gameAdded) {
+                addGameToUsersData(game);
+                gameAdded = true;
+            }
+            console.log("added")
             clearInterval(timerIntervalId);
         }
+        timer--;
     }, 1000)
 }
 
@@ -93,6 +101,15 @@ const generateRandomAlphabet = () => {
         "z",
     ];
     return letters[Math.floor(Math.random() * letters.length)].toUpperCase();
+}
+
+const addGameToUsersData = async (game) => {
+    const player_1 = await UserModel.findOne({ _id: game.player_1._id });
+    player_1.matchData.push(game);
+    await player_1.save();
+    const player_2 = await UserModel.findOne({ _id: game.player_2._id });
+    player_2.matchData.push(game);
+    await player_2.save();
 }
 
 module.exports = { gameSocketHandler }

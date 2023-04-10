@@ -17,7 +17,7 @@ export const Home = () => {
                     isAuth ?
                         <div className='text-white flex flex-col py-52 items-center justify-center gap-20'>
                             <Link className='homeComponents skew-y-12 py-5 px-10' id='homeButtons' style={{ "--clr": "yellow" }} to={"/singleplayer"}><span>Single-player</span><i></i></Link>
-                            <Link className='homeComponents skew-y-12 py-5 px-10' id='homeButtons' style={{ "--clr": "red" }} to={"/multiplayer"}><span>Multi-player</span><i></i></Link>
+                            <Link className='homeComponents skew-y-12 py-5 px-10' id='homeButtons' style={{ "--clr": "red" }} to={"/userList"}><span>Multi-player</span><i></i></Link>
                         </div>
                         :
                         <div className='text-white flex flex-col pt-52 items-center justify-center gap-20'>
