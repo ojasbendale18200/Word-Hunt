@@ -51,7 +51,7 @@ const startTimerInGame = async (io, gameId,gameAdded) => {
             timerResetCount++;
         }
         const game = await GameModel.findOne({ _id: gameId });
-        if (timer === 40 && timerResetCount !== 5) {
+        if (timer === 40 && timerResetCount !== 3) {
             // generate a random alphabet and send it to both the users
             const alphabet = generateRandomAlphabet()
             io.to(game.player_1.socketId).to(game.player_2.socketId).emit("newAlphabet", alphabet);
@@ -59,10 +59,11 @@ const startTimerInGame = async (io, gameId,gameAdded) => {
 
         // send the updated timer to both the players in the game
         io.to(game.player_1.socketId).to(game.player_2.socketId).emit("updatedTimer", timer)
-        if (timerResetCount === 5) {
-            io.emit("gameOver", game)
+        if (timerResetCount === 3) {
+            const updatedGame = await updateGame(game)
+            io.emit("gameOver", updatedGame)
             if (!gameAdded) {
-                addGameToUsersData(game);
+                addGameToUsersData(updatedGame);
                 gameAdded = true;
             }
             console.log("added")
@@ -110,6 +111,26 @@ const addGameToUsersData = async (game) => {
     const player_2 = await UserModel.findOne({ _id: game.player_2._id });
     player_2.matchData.push(game);
     await player_2.save();
+}
+
+const updateGame = async (game) => {
+    if(game.player_1.score > game.player_2.score){
+        game.winner_socketId = game.player_1.socketId;
+        game.winner_name = game.player_1.name;
+        game.winner_score = game.player_1.score;
+    }
+    else if(game.player_2.score > game.player_1.score){
+        game.winner_socketId = game.player_2.socketId;
+        game.winner_name = game.player_2.name;
+        game.winner_score = game.player_2.score;
+    }
+    else{
+        game.winner_socketId = "draw";
+        game.winner_name = "draw";
+        game.winner_score = "draw";
+    }
+    await game.save();
+    return game;
 }
 
 module.exports = { gameSocketHandler }
