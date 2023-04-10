@@ -191,7 +191,7 @@ const SingleUserGame = () => {
         <>
             {alertBox && (
                 <div
-                    className="absolute right-[45%] top-[5%] transition duration-500 m-auto text-center p-4 mb-4 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 text-lg"
+                    className="alertWarning absolute right-[20%] sm:right-[45%] top-[5%] transition duration-500 m-auto text-center p-4 mb-4 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 text-lg"
                     role="alert"
                 >
                     <span className="font-medium">All fields required !</span>
@@ -199,7 +199,7 @@ const SingleUserGame = () => {
             )}
             {goAlert && (
                 <div
-                    className="absolute right-[45%] top-[5%] transition duration-500 m-auto text-center p-4 mb-4 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 text-lg"
+                    className="alertWarning absolute right-[20%] sm:right-[45%] top-[5%] transition duration-500 m-auto text-center p-4 mb-4 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 text-lg"
                     role="alert"
                 >
                     <span className="font-medium">Game Over !</span>
@@ -240,7 +240,7 @@ const SingleUserGame = () => {
                     <p className="">Bingo says letter</p>
                     <h1 className="text-7xl font-bold">{bingoLetter}</h1>
                 </div>
-                <div className="flex flex-col lg:flex-row items-center justify-evenly gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-3 items-center justify-evenly gap-4">
                     <input
                         type="text"
                         value={country}
@@ -275,7 +275,7 @@ const SingleUserGame = () => {
                 <div className="flex gap-2 items-center justify-center">
                     {!gameOver ? (
                         <button
-                            className="w-[30%] block m-auto text-center text-white"
+                            className="sm:w-[30%] block m-auto text-center text-white"
                             onClick={bingo}
                             disabled={gameOver}
                             id="button"
@@ -285,7 +285,7 @@ const SingleUserGame = () => {
                         </button>
                     ) : (
                         <button
-                            className="w-[30%] block m-auto text-center"
+                            className="sm:w-[30%] block m-auto text-center"
                             onClick={startGame}
                             id="button"
                         >
