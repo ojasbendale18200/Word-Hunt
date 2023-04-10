@@ -33,6 +33,9 @@ const gameSocketHandler = (io, socket) => {
                 throw new Error("Socket ID not found");
             }
             await game.save();
+
+            // sent updated score to both the users
+            io.to(game.player_1.socketId).to(game.player_2.socketId).emit("updatedScore", game)
         } catch (err) {
             console.error(err);
             socket.emit("scoreUpdatefailed", { "msg": err.message });
@@ -119,15 +122,10 @@ const updateGame = async (game) => {
         game.winner_name = game.player_1.name;
         game.winner_score = game.player_1.score;
     }
-    else if(game.player_2.score > game.player_1.score){
+    else{
         game.winner_socketId = game.player_2.socketId;
         game.winner_name = game.player_2.name;
         game.winner_score = game.player_2.score;
-    }
-    else{
-        game.winner_socketId = "draw";
-        game.winner_name = "draw";
-        game.winner_score = "draw";
     }
     await game.save();
     return game;

@@ -57,8 +57,8 @@ export const MatchHistory: React.FC<AllRoutesProps> = ({ socket }) => {
           <p>Your score</p>
         </div>
         <div className="grid grid-cols-2">
-          <p className="border-r-2">Opponent</p>
-          <p>Score</p>
+          <p className="border-r-2">Opponent's Name</p>
+          <p>Opponent's Score</p>
         </div>
       </div>
       <div className="flex flex-col gap-5 overflow-x-auto">

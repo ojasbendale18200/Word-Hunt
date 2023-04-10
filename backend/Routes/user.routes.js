@@ -60,6 +60,7 @@ useRouter.post("/login", async (req, res) => {
           res.status(200).send({
             msg: "User login successful",
             token: token,
+            name: user[0].name,
           });
         } else {
           res.status(400).send({ msg: "Wrong Credential" });
