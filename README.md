@@ -83,16 +83,39 @@ npm run deploy
 
 ## ScreenShots
 
-### 1. Login
-<!--![file name](file url)-->
+### 1. Home Page
 
-### 2. Signup
 
-<!--![file name](file url)-->
+<img width="686" alt="login" src="https://user-images.githubusercontent.com/112771413/230953425-503a1627-4e81-4066-a2c8-6058eefb535a.png">
 
-### 3. MainGame
 
-<!--![file name](file url)-->
+### 2. Login
+
+<img width="686" alt="login" src="https://user-images.githubusercontent.com/112771413/230953173-721f33ba-b08d-4ca9-861e-e4b94f7c008b.png">
+
+### 3. Signup
+
+<img width="694" alt="signup" src="https://user-images.githubusercontent.com/112771413/230953293-b63dc380-2875-4c86-930c-c139c2f2f97e.png">
+
+### 4. Game Lobby
+
+<img width="686" alt="Game_Looby" src="https://user-images.githubusercontent.com/112771413/230953587-e23ee847-b973-4dd1-a7dc-9663d8424a0b.png">
+
+### 5. Navbar Menu
+
+<img width="678" alt="nav_menu" src="https://user-images.githubusercontent.com/112771413/230953771-2c8c9f16-2d5c-4cc1-b2e7-0e02ff00baac.png">
+
+### 6. Game Play
+
+<img width="696" alt="game_play" src="https://user-images.githubusercontent.com/112771413/230953985-0a76626b-4310-4260-bcdc-543c20858662.png">
+
+### 7. Match History
+
+<img width="677" alt="Match_History" src="https://user-images.githubusercontent.com/112771413/230954113-98171cfa-5d0e-497e-a3ae-24674afaf76d.png">
+
+### 8. User List
+
+<img width="693" alt="multiplayer" src="https://user-images.githubusercontent.com/112771413/230954209-00e097d1-1a94-406e-ad8a-1b322c3b590c.png">
 
 ## Run Locally
 
