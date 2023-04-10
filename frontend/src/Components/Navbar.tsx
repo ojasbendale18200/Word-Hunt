@@ -13,12 +13,12 @@ export const Navbar = () => {
     const gameRules = () => {
         return (
             <>
-                <h1 className='text-center text-2xl'>Welcome to Word-Hunt</h1>
+                <h1 className='text-center sm:text-2xl'>Welcome to Word-Hunt</h1>
                 <br />
                 <p className=''>Word-Hunt is a quiz where player needs to find all the words starting from the same letter.</p>
                 <br />
                 <h2>Game Rules:</h2>
-                <ol className='list-disc'>
+                <ol className='sm:list-disc'>
                     <li>This game has 5 rounds.</li>
                     <li>A letter would be given at the start of the game</li>
                     <li>Player needs to type the name of country, animal and a person starting from the same letter.</li>
@@ -32,9 +32,9 @@ export const Navbar = () => {
         )
     }
     return (
-        <div id='nav' className='font-[cursive] h-[9vh] text-xl flex justify-between py-0 px-10 items-center'>
-            {gr && <div id='glass' className='absolute top-[10%] right-[25%] w-[50%] text-white z-10 rounded-lg p-10'>{gameRules()}</div>}
-            <img onClick={() => navigate("/")} src='https://i.ibb.co/BZSLGQX/W-H-logo.png' className='h-full hover:cursor-pointer' alt='something went wrong' />
+        <div id='nav' className='font-[cursive] h-[9vh] text-xl flex justify-around sm:justify-between px-0 sm:px-10 items-center'>
+            {gr && <div id='glass' className='absolute text-sm sm:text-xl top-[5%] right-[0] w-[97%] sm:top-[10%] sm:right-[25%] sm:w-[50%] text-white z-10 rounded-lg p-2 sm:p-10'>{gameRules()}</div>}
+            <img onClick={() => navigate("/")} src='https://i.ibb.co/BZSLGQX/W-H-logo.png' className='h-full hover:cursor-pointer hidden sm:block' alt='something went wrong' />
             <div className='flex gap-10'>
                 <Link to={"/"}><GoHome className={"h-full hover:text-[#0099FF]"} /></Link>
                 <div id='navDropDown' className='relative hover:text-[#0099FF]'>
