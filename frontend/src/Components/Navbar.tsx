@@ -75,9 +75,12 @@ export const Navbar = () => {
         alt="something went wrong"
       />
       <div className="flex gap-10">
-        <Link to={"/"}>
+        <div
+          className={"cursor-pointer hover:text-[#0099FF]"}
+          onClick={() => `${isAuth ? navigate("/type") : navigate("/")}`}
+        >
           <GoHome className={"h-full hover:text-[#0099FF]"} />
-        </Link>
+        </div>
         <div id="navDropDown" className="relative hover:text-[#0099FF]">
           <p className="hover:text-[#0099FF]">
             {userName ? userName : "userName"}{" "}
