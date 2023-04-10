@@ -24,6 +24,11 @@ const userSocketHandler = (io, socket) => {
         socket.emit("getUpdatedMatchData", updatedUserData);
     })
 
+    socket.on("getMatchHistory", async() => {
+        const user = await UserModel.findOne({socketId : socket.id});
+        socket.emit("getUsersData", user);
+    })
+
 }
 
 module.exports = { userSocketHandler };

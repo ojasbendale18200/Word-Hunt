@@ -52,26 +52,24 @@ export interface InvitationFrom {
   password: string;
   status: string;
   socketId: string;
-  matchData: 
-    {
-      winner_socketId: string;
-      winner_name: string;
-      winner_score: number;
-      player_1: {
-        _id: string;
-        name: string;
-        score: number;
-        socketId: string;
-      };
-      player_2: {
-        _id: string;
-        name: string;
-        score: number;
-        socketId: string;
-      };
-    }[];
-  __v: number,
-  _id: string,
+  matchData: {
+    _id: string;
+    winner_socketId: string;
+    winner_name: string;
+    winner_score: number;
+    player_1: {
+      _id: string;
+      name: string;
+      score: number;
+      socketId: string;
+    };
+    player_2: {
+      _id: string;
+      name: string;
+      score: number;
+      socketId: string;
+    };
+  }[];
+  __v: number;
+  _id: string;
 }
-
-

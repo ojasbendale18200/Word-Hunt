@@ -31,7 +31,7 @@ export const GameCard: React.FC<propsTypes> = ({
   country,
   name,
   animal,
-  handleScore
+  handleScore,
 }) => {
   const [gameOver, setGameOver] = useState(false);
   const [alertBox, setAlertBox] = useState<boolean>(false);
@@ -48,13 +48,6 @@ export const GameCard: React.FC<propsTypes> = ({
     return element.toUpperCase();
   });
 
-  // const isTimeUp = (): boolean => {
-  //   if (countdown === 0) {
-  //     return true;
-  //   }
-  //   return false;
-  // };
-
   const clearFields = (): void => {
     setCountryInput("");
     setNameInput("");
@@ -64,41 +57,33 @@ export const GameCard: React.FC<propsTypes> = ({
   const validateCountry = (country: string): boolean => {
     if (country.substring(0, 1).toUpperCase() === letter) {
       if (countriesUpper.includes(country.toUpperCase())) {
-        // setScore((score: number) => score + 10)
         return true;
       }
     }
+    setCountryInput("")
     return false;
   };
   const validateName = (name: string): boolean => {
     if (name.substring(0, 1).toUpperCase() === letter) {
       if (namesUpper.includes(name.toUpperCase())) {
-        // setScore((score: number) => score + 10)
-        return true;
+          return true;
       }
     }
+    setNameInput("")
     return false;
   };
   const validateAnimal = (animal: string): boolean => {
     if (animal.substring(0, 1).toUpperCase() === letter) {
       if (animalsUpper.includes(animal.toUpperCase())) {
-        // setScore((score: number) => score + 10)
         return true;
       }
     }
+    setAnimalInput("")
     return false;
   };
 
-  // useEffect(() => {
-  //   if (isTimeUp()) {
-  //     setGameOver(true);
-  //     setFinalScore(score: number);
-  //     setScore(0);
-  //   }
-  // }, [countdown]);
 
-  const bingo = async () => {
-    
+  const bingo =  () => {
     // reset();
     if (country === "" || name === "" || animal === "") {
       setAlertBox(true);
@@ -112,77 +97,61 @@ export const GameCard: React.FC<propsTypes> = ({
         validateName(name) &&
         validateAnimal(animal)
       ) {
-        setScore((score: number) => score + 30);
+        setFinalScore((score: number) => score + 30);
 
         clearFields();
-        // generateLetter();
-        // start();
       } else if (
         !validateCountry(country) &&
         validateName(name) &&
         validateAnimal(animal)
       ) {
-        setScore((score: number) => score + 20);
+        setFinalScore((score: number) => score + 20);
 
         clearFields();
-        // generateLetter();
-        // start();
       } else if (
         validateCountry(country) &&
         !validateName(name) &&
         validateAnimal(animal)
       ) {
-        setScore((score: number) => score + 20);
+        setFinalScore((score: number) => score + 20);
 
         clearFields();
-        // generateLetter();
-        // start();
       } else if (
         validateCountry(country) &&
         validateName(name) &&
         !validateAnimal(animal)
       ) {
-        setScore((score: number) => score + 20);
+        setFinalScore((score: number) => score + 20);
 
         clearFields();
-        // generateLetter();
-        // start();
       } else if (
         !validateCountry(country) &&
         !validateName(name) &&
         validateAnimal(animal)
       ) {
-        setScore((score: number) => score + 10);
+        setFinalScore((score: number) => score + 10);
 
         clearFields();
-        // generateLetter();
-        // start();
       } else if (
         !validateCountry(country) &&
         validateName(name) &&
         !validateAnimal(animal)
       ) {
-        setScore((score: number) => score + 10);
+        setFinalScore((score: number) => score + 10);
 
         clearFields();
-        // generateLetter();
-        // start();
       } else if (
         validateCountry(country) &&
         !validateName(name) &&
         !validateAnimal(animal)
       ) {
-        setScore((score: number) => score + 10);
+        setFinalScore((score: number) => score + 10);
 
         clearFields();
-        // generateLetter();
-        // start();
-
-        await handleScore( score);
       } else {
         setGameOver(true);
         clearFields();
-        setFinalScore(score);
+        // setFinalScore(score);
         setGoAlert(true);
         setTimeout(() => {
           setGoAlert(false);
@@ -190,6 +159,26 @@ export const GameCard: React.FC<propsTypes> = ({
       }
     }
   };
+
+  const Bing = (setFinalScore : Function) => {
+    // if (country === "" || name === "" || animal === "") {
+    //   setAlertBox(true);
+    //   setTimeout(() => {
+    //     setAlertBox(false);
+    //   }, 3000);
+    //   return;
+    // }
+    if(validateCountry(country)){
+      setFinalScore(finalScore + 10);
+    }
+    if(validateName(name)){
+      setFinalScore(finalScore+ 10);
+    }
+    if(validateAnimal(animal)){
+      setFinalScore(finalScore + 10);
+    }
+    clearFields();
+  }
 
   return (
     <div
@@ -199,7 +188,7 @@ export const GameCard: React.FC<propsTypes> = ({
       <div className="hover:cursor-default grid grid-cols-3">
         <p className={"mb-10 text-2xl components"}>Timer - {timer}</p>
         <p className={"mb-10 text-2xl components"}>First Letter : {letter}</p>
-        <p className={"mb-10 text-2xl components"}>Score - {score}</p>
+        <p className={"mb-10 text-2xl components"}>Score - {finalScore}</p>
       </div>
       <div className="mb-10 grid grid-cols-3 gap-10">
         <input
@@ -229,7 +218,10 @@ export const GameCard: React.FC<propsTypes> = ({
       </div>
       <a
         id="button"
-        onClick={bingo}
+        onClick={() => {
+          Bing(setFinalScore);
+          handleScore(finalScore);
+        }}
         className="w-[30%] block m-auto text-center"
       >
         <span>Submit</span>
