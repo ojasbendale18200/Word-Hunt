@@ -3,11 +3,6 @@ import "../Styles/Universal.css";
 import { AllRoutesProps, Game, User } from "../utils/types";
 import { InvitationFrom } from "../utils/types";
 
-// interface matchData {
-//   playerScore: number;
-//   opponentName: string;
-//   opponentScore: number;
-// }
 
 const initialState = {
     name: "",
@@ -42,7 +37,6 @@ const initialState = {
 export const MatchHistory: React.FC<AllRoutesProps> = ({ socket }) => {
     const [data, setData] = React.useState<InvitationFrom>(initialState);
 
-    //   let matchData: matchData[] = [];
 
     React.useEffect(() => {
         socket.on("getUsersData", async (user) => {
