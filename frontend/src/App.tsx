@@ -4,7 +4,7 @@ import { Navbar } from "./Components/Navbar"
 import AllRoutes from "./Pages/AllRoutes";
 import io, { Socket } from "socket.io-client";
 
-const socket = io("http://localhost:4321");
+const socket = io("https://word-hunt-59qf.onrender.com");
 
 
 const App: React.FC = () => {
