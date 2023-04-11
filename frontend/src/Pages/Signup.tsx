@@ -55,7 +55,7 @@ const Signup = () => {
                     `http://localhost:4321/users/register`,
                     userData
                 );
-                console.log(res);
+                // console.log(res);
                 if (res.status === 200) {
                     navigate("/login");
                 } else {
@@ -66,7 +66,7 @@ const Signup = () => {
             }
         }
     };
-    console.log(noDetailsAlert)
+    // console.log(noDetailsAlert)
     return (
         <div className="container max-w-sm mx-auto flex-1 flex flex-col items-center text-white justify-center px-2 mt-24">
             {

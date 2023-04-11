@@ -39,12 +39,12 @@ const UsersList: React.FC<AllRoutesProps> = ({ socket }) => {
         // listen to invitations
 
         socket.on("invitationForYou", async ({ invitedBy, name }) => {
-            console.log(invitedBy);
+            // console.log(invitedBy);
             if (invitedBy._id !== "") {
                 setName(name);
                 setinvitedBy(invitedBy);
                 setInvitationFrom(invitedBy);
-                console.log(invitationFrom);
+                // console.log(invitationFrom);
                 // display a toast saying `${name} has sent you an invitation` => Accept / Reject
                 // when the user is clicking on accept redirect him to multiplayer page.
             }
@@ -53,7 +53,7 @@ const UsersList: React.FC<AllRoutesProps> = ({ socket }) => {
 
     // listen to invitation response from server
     socket.on("invitationResponse", ({ msg }) => {
-        console.log(msg);
+        // console.log(msg);
         if (msg === "Invitation Accepted") {
             navigate("/multiplayer");
         }
@@ -75,7 +75,7 @@ const UsersList: React.FC<AllRoutesProps> = ({ socket }) => {
     // listen to the "statusUpdated" event
     React.useEffect(() => {
         const handleUsersList = (usersData: User[]): void => {
-            console.log(usersData);
+            // console.log(usersData);
             setUsers(usersData);
         };
         socket.on("updatedStatusList", handleUsersList);

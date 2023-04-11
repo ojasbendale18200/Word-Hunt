@@ -73,14 +73,14 @@ export const MainGamePage: React.FC<AllRoutesProps> = ({ socket }) => {
                 setAlertBox(false);
             }, 3000);
         } else {
-            console.log(dataToSend);
+            // console.log(dataToSend);
         }
     };
 
     // // listen to game created event
     socket.on("gameCreated", async (game: Game) => {
         setGame(game);
-        console.log(game);
+        // console.log(game);
         // get opponents name and score
         if (game._id !== "") {
             if (game.player_1.socketId === socket.id) {
@@ -92,7 +92,7 @@ export const MainGamePage: React.FC<AllRoutesProps> = ({ socket }) => {
             }
 
             // // emit event to start the timer on the server.
-            console.log(game._id, "start");
+            // console.log(game._id, "start");
             socket.emit("startTimer", game._id.toString());
         }
     });
@@ -122,7 +122,7 @@ export const MainGamePage: React.FC<AllRoutesProps> = ({ socket }) => {
 
     // to update the score of the user on the server
     const handleScore = (finalScore: number) => {
-        console.log(finalScore);
+        // console.log(finalScore);
         socket.emit("scoreUpdate", {
             score: finalScore,
             socketId: socket.id,

@@ -13,7 +13,7 @@ const inviteSocketHandler = (io, socket) => {
         try {
             const userToInvite = await UserModel.findById(invitedUsersID);
             if (userToInvite && userToInvite.status === "available") {
-                console.log(userToInvite)
+                // console.log(userToInvite)
 
                 // get the name of the user who is inviting
                 const inviteFrom = await UserModel.findOne({ socketId: socket.id });
@@ -32,7 +32,7 @@ const inviteSocketHandler = (io, socket) => {
     });
 
     socket.on("invitationResponseFromOpponent", async ({ responseFromOpponent, host }) => {
-        console.log(responseFromOpponent,host)
+        // console.log(responseFromOpponent,host)
         if (host !== "") {
             const inviteFrom = await UserModel.findOne({ socketId: host })
             if (responseFromOpponent) {

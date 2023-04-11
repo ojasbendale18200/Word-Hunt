@@ -40,7 +40,7 @@ export const MatchHistory: React.FC<AllRoutesProps> = ({ socket }) => {
     React.useEffect(() => {
         socket.on("getUsersData", async (user) => {
             setData((e) => (e = user));
-            console.log(user);
+            // console.log(user);
         });
     }, [socket]);
     React.useEffect(() => {

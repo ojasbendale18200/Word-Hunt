@@ -38,7 +38,8 @@ app.use("/data", dataRouter)
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    // origin: "*",
+    origin: ["https://word-hunt-indol.vercel.app","http://localhost:3000"],
     methods: ["GET", "POST", "PATCH", "DELETE"],
   },
 });

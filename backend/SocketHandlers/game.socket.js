@@ -11,7 +11,7 @@ const gameSocketHandler = (io, socket) => {
         let timerStarted = false;
         const game = await GameModel.findOne({ _id: gameId });
         if (game && !timerStarted) {
-            console.log("game");
+            // console.log("game");
             timerStarted = true;
             await startTimerInGame(io, gameId,gameAdded);
         }
@@ -19,7 +19,7 @@ const gameSocketHandler = (io, socket) => {
 
     // listen to update score event
     socket.on("scoreUpdate", async ({ score, socketId, gameId }) => {
-        console.log(score)
+        // console.log(score)
         try {
             const game = await GameModel.findOne({ _id: gameId.toString() });
             if (!game) {
@@ -69,7 +69,7 @@ const startTimerInGame = async (io, gameId,gameAdded) => {
                 addGameToUsersData(updatedGame);
                 gameAdded = true;
             }
-            console.log("added")
+            // console.log("added")
             clearInterval(timerIntervalId);
         }
         timer--;
