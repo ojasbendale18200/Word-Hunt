@@ -1,8 +1,19 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../Styles/Home.css";
 
 export const SelectGameType = () => {
+
+    const authentication = localStorage.getItem("userToken") || null;
+    const isAuth = authentication ? true : false;
+  
+    const navigate = useNavigate();
+  
+    React.useEffect(() => {
+      if (!isAuth) {
+        navigate("/");
+      }
+    }, [authentication]);
 
     return (
         <div

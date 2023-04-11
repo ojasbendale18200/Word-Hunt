@@ -4,8 +4,20 @@ import React, { useState, useEffect } from "react";
 import { useCountdownTimer } from "use-countdown-timer";
 import { letters, countries, animals, names } from "../utils/data";
 import "../Styles/Universal.css";
+import { useNavigate } from "react-router-dom";
 
 const SingleUserGame = () => {
+
+    const authentication = localStorage.getItem("userToken") || null;
+    const isAuth = authentication ? true : false;
+  
+    const navigate = useNavigate();
+  
+    React.useEffect(() => {
+      if (!isAuth) {
+        navigate("/");
+      }
+    }, [authentication]);
     const { countdown, reset, start } = useCountdownTimer({
         timer: 1000 * 40,
         autostart: false,

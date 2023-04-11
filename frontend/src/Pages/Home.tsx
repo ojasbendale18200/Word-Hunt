@@ -4,16 +4,16 @@ import { Link, useNavigate } from "react-router-dom";
 import "../Styles/Home.css";
 
 export const Home = () => {
-    //   const authentication = localStorage.getItem("userToken") || null;
-    //   const isAuth = authentication ? true : false;
+  const authentication = localStorage.getItem("userToken") || null;
+  const isAuth = authentication ? true : false;
 
   const navigate = useNavigate();
 
-  React.useEffect(()=>{
-    if(isAuth){
+  React.useEffect(() => {
+    if (isAuth) {
       navigate("/type");
     }
-  },[authentication])
+  }, [authentication]);
 
   return (
     <div
@@ -37,7 +37,7 @@ export const Home = () => {
           <Link
             className="homeComponents sm:skew-y-12 py-5 px-10"
             id="homeButtons"
-            style={{ "--clr": "yellow" } as React.CSSProperties }
+            style={{ "--clr": "yellow" } as React.CSSProperties}
             to={"/login"}
           >
             <span>Login</span>
@@ -46,13 +46,14 @@ export const Home = () => {
           <Link
             className="homeComponents sm:skew-y-12 py-5 px-10"
             id="homeButtons"
-            style={{ "--clr": "#0099FF" } as React.CSSProperties }
+            style={{ "--clr": "#0099FF" } as React.CSSProperties}
             to={"/signup"}
           >
             <span>Signup</span>
             <i></i>
           </Link>
-
         </div>
-    );
+      </div>
+    </div>
+  );
 };
