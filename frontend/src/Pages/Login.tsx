@@ -33,7 +33,7 @@ const Login = () => {
                     password,
                 };
                 let res = await axios.post(
-                    `http://localhost:4321/users/login`,
+                    `https://word-hunt-59qf.onrender.com/users/login`,
                     payload
                 );
                 localStorage.setItem("userToken", res.data.token);

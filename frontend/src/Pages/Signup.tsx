@@ -30,7 +30,7 @@ const Signup = () => {
 
         // try {
         //     let res: AxiosResponse = await axios.post(
-        //         `http://localhost:4321/users/register`,
+        //         `https://word-hunt-59qf.onrender.com/users/register`,
         //         userData
         //     );
         //     console.log(res);
@@ -52,7 +52,7 @@ const Signup = () => {
         } else {
             try {
                 let res: AxiosResponse = await axios.post(
-                    `http://localhost:4321/users/register`,
+                    `https://word-hunt-59qf.onrender.com/users/register`,
                     userData
                 );
                 // console.log(res);
