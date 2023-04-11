@@ -35,7 +35,16 @@ export const MainGamePage: React.FC<AllRoutesProps> = ({ socket }) => {
     const [opponentsName, setOpponentsName] = React.useState<string>("");
     const [opponentsScore, setOpponentsScore] = React.useState<number>(0);
 
+    const authentication = localStorage.getItem("userToken") || null;
+    const isAuth = authentication ? true : false;
+  
     const navigate = useNavigate();
+  
+    React.useEffect(() => {
+      if (!isAuth) {
+        navigate("/");
+      }
+    }, [authentication]);
 
     const handleChange = (inp: string, inputName: string) => {
         if (inputName === "country") {
