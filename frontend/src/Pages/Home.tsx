@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
 import "../Styles/Home.css";
 
 export const Home = () => {
-  const authentication = localStorage.getItem("userToken") || null;
-  const isAuth = authentication ? true : false;
+    //   const authentication = localStorage.getItem("userToken") || null;
+    //   const isAuth = authentication ? true : false;
 
   const navigate = useNavigate();
 
@@ -51,8 +52,7 @@ export const Home = () => {
             <span>Signup</span>
             <i></i>
           </Link>
+
         </div>
-      </div>
-    </div>
-  );
+    );
 };

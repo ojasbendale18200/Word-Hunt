@@ -207,7 +207,7 @@ const SingleUserGame = () => {
             )}
             <div
                 id="glass"
-                className="bg-[rgba(0,0,0,0.5)]  px-10 py-8 w-full max-w-5xl rounded-3xl drop-shadow-sm flex flex-col gap-8 text-white m-auto mt-32"
+                className="bg-[rgba(0,0,0,0.5)] font-[cursive] px-10 py-8 w-full max-w-5xl rounded-3xl drop-shadow-sm flex flex-col gap-8 text-white m-auto mt-32"
             >
                 <div
                     className={` ${gameOver ? "block" : "hidden"
@@ -249,7 +249,7 @@ const SingleUserGame = () => {
                             start();
                         }}
                         placeholder="Country"
-                        className="px-4 text-xl py-2 bg-transparent border-b-2 placeholder-white outline-none border-[#0099FF] text-white focus:shadow-2xl focus:shadow-[#0099FF]"
+                        className="placeholder:text-[rgba(201,234,255,0.3)] px-4 text-xl py-2 bg-transparent border-b-2 placeholder-white outline-none border-[#0099FF] text-white focus:shadow-2xl focus:shadow-[#0099FF]"
                     />
                     <input
                         type="text"
@@ -259,7 +259,7 @@ const SingleUserGame = () => {
                             start();
                         }}
                         placeholder="Name"
-                        className="px-4 text-xl py-2 bg-transparent border-b-2 placeholder-white outline-none border-[#0099FF] text-white focus:shadow-2xl focus:shadow-[#0099FF]"
+                        className="placeholder:text-[rgba(201,234,255,0.3)] px-4 text-xl py-2 bg-transparent border-b-2 placeholder-white outline-none border-[#0099FF] text-white focus:shadow-2xl focus:shadow-[#0099FF]"
                     />
                     <input
                         type="text"
@@ -269,7 +269,7 @@ const SingleUserGame = () => {
                             start();
                         }}
                         placeholder="Animal"
-                        className="px-4 text-xl py-2 bg-transparent border-b-2 placeholder-white outline-none border-[#0099FF] text-white focus:shadow-2xl focus:shadow-[#0099FF]"
+                        className="placeholder:text-[rgba(201,234,255,0.3)] px-4 text-xl py-2 bg-transparent border-b-2 placeholder-white outline-none border-[#0099FF] text-white focus:shadow-2xl focus:shadow-[#0099FF]"
                     />
                 </div>
                 <div className="flex gap-2 items-center justify-center">
@@ -280,7 +280,7 @@ const SingleUserGame = () => {
                             disabled={gameOver}
                             id="button"
                         >
-                            <span className="italic">Bingo!</span>
+                            <span className="">Bingo!</span>
                             <i></i>
                         </button>
                     ) : (
@@ -289,7 +289,7 @@ const SingleUserGame = () => {
                             onClick={startGame}
                             id="button"
                         >
-                            <span className="italic">Start</span>
+                            <span className="">Start</span>
                             <i></i>
                         </button>
                     )}
