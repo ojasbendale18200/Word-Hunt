@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "../Styles/Home.css";
 
 export const Home = () => {
   const authentication = localStorage.getItem("userToken") || null;
   const isAuth = authentication ? true : false;
+
+  const navigate = useNavigate();
+
+  React.useEffect(()=>{
+    if(isAuth){
+      navigate("/type");
+    }
+  },[authentication])
 
   return (
     <div
