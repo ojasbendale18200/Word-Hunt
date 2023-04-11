@@ -8,7 +8,7 @@ export const Logout = () => {
     useEffect(() => {
         setTimeout(() => {
             setState(true);
-        }, 3000)
+        }, 2000)
     }, [])
     return (
         <div className="relative h-[90vh]">
