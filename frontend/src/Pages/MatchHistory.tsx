@@ -63,7 +63,7 @@ export const MatchHistory: React.FC<AllRoutesProps> = ({ socket }) => {
             </div>
             <div className="flex flex-col gap-5 overflow-x-auto">
                 {data ? (
-                    data.matchData.map((e, i) => {
+                    data.matchData.reverse().map((e, i) => {
                         if (i % 2 === 0) {
                             return (
                                 <div
@@ -92,7 +92,7 @@ export const MatchHistory: React.FC<AllRoutesProps> = ({ socket }) => {
                                         </p>
                                         <p>
                                             {" "}
-                                            {e.player_1.socketId === socket.id
+                                            {e.player_1.name === userName
                                                 ? `${`${e.player_2.score}` +
                                                 `${e.player_2.score === e.winner_score ? "🥳" : ""
                                                 }`
