@@ -8,35 +8,35 @@ import SingleUserGame from "./SingleUserGame";
 import { Home } from "./Home";
 import { AllRoutesProps } from "../utils/types";
 import { MatchHistory } from "./MatchHistory";
-import { SelectGameType } from "./SelectGameType";
+import { Logout } from "./Logout";
 
 const AllRoutes: React.FC<AllRoutesProps> = ({ socket }) => {
-  const pageNotFound = () => {
+    const pageNotFound = () => {
+        return (
+            <div className="m-auto w-[30%] flex flex-col items-center">
+                <h1 className="text-white text-7xl my-10">404!</h1>
+                <p className="text-white text-3xl">Requested Page Not Found</p>
+            </div>
+        );
+    };
     return (
-      <div className="m-auto w-[30%] flex flex-col items-center">
-        <h1 className="text-white text-7xl my-10">404!</h1>
-        <p className="text-white text-3xl">Requested Page Not Found</p>
-      </div>
+        <div>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/signup" element={<Signup />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/logout" element={<Logout />} />
+                <Route path="/userList" element={<UsersList socket={socket} />} />
+                <Route path="/singleplayer" element={<SingleUserGame />} />
+                <Route path="/multiplayer" element={<MainGamePage socket={socket} />} />
+                <Route
+                    path="/matchhistory"
+                    element={<MatchHistory socket={socket} />}
+                ></Route>
+                <Route path="*" element={pageNotFound()} />
+            </Routes>
+        </div>
     );
-  };
-  return (
-    <div>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/type" element={<SelectGameType />} />
-        <Route path="/userList" element={<UsersList socket={socket} />} />
-        <Route path="/singleplayer" element={<SingleUserGame />} />
-        <Route path="/multiplayer" element={<MainGamePage socket={socket} />} />
-        <Route
-          path="/matchhistory"
-          element={<MatchHistory socket={socket} />}
-        ></Route>
-        <Route path="*" element={pageNotFound()} />
-      </Routes>
-    </div>
-  );
 };
 
 export default AllRoutes;
